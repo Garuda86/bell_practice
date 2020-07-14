@@ -1,33 +1,51 @@
 package ru.bellintegrator.practice.model;
 
-public class User {
-    private Integer id;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-    private String firstName;
+@Entity
+@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "doc_id", name = "IX_User_doc_id")})
+public class User extends AbstractBaseEntity {
+    //id in abstract;
 
+    @NotBlank
+    @Size(min = 2, max = 100)
+    @Column(name = "first_name", nullable = false)
+    protected String firstName;
+
+    @Column(name = "second_name", nullable = false)
+    @NotBlank
+    @Size(min = 2, max = 100)
     private String secondName;
 
+    @Column(name = "middle_name", nullable = false)
+    @NotBlank
+    @Size(min = 2, max = 100)
     private String middleName;
 
+    @Column(name = "position", nullable = false)
+    @NotBlank
+    @Size(min = 2, max = 100)
     private String position;
 
+    @Column(name = "phone", nullable = false, length = 11)
+    @NotBlank
     private String phone;
 
+    @OneToOne
+    @JoinColumn(name = "doc_id")
     private Document document;
 
+    @ManyToOne
+    @JoinColumn(name = "country_id")
     private Country country;
 
     private Boolean isIdentified;
 
+    @ManyToOne
+    @JoinColumn(name = "office_id")
     private Office office;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;

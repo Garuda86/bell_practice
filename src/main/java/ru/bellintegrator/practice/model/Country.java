@@ -1,21 +1,17 @@
 package ru.bellintegrator.practice.model;
 
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
-public class Country {
-    private Integer id;
+@Entity
+@Table(name = "country")
+public class Country extends AbstractNamedEntity {
 
+    @Column(name = "code", nullable = false, length = 5)
+    @NotBlank
     private String code;
-
-    private String name;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getCode() {
         return code;
@@ -23,13 +19,5 @@ public class Country {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

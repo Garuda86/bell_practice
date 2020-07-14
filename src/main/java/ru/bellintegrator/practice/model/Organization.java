@@ -1,38 +1,38 @@
 package ru.bellintegrator.practice.model;
 
-public class Organization {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-    private Integer id;
+@Entity
+@Table(name = "organization")
+public class Organization extends AbstractNamedEntity{
 
-    private String name;
-
+    @Column(name = "full_name", nullable = false)
+    @NotBlank
+    @Size(min = 2, max = 100)
     private String fullName;
 
+    @Column(name = "inn", nullable = false, length = 11)
+    @NotBlank
     private String inn;
 
+    @Column(name = "kpp", nullable = false, length = 11)
+    @NotBlank
     private String kpp;
 
+    @Column(name = "address", nullable = false)
+    @NotBlank
+    @Size(min = 10, max = 200)
     private String address;
 
+    @Column(name = "phone", nullable = false, length = 11)
+    @NotBlank
     private String phone;
 
     private Boolean isActive;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getFullName() {
         return fullName;

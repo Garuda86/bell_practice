@@ -1,20 +1,17 @@
 package ru.bellintegrator.practice.model;
 
-public class DocType {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
-    private Integer id;
+@Entity
+@Table(name = "doc_type")
+public class DocType extends AbstractNamedEntity {
 
+    @Column(name = "code", nullable = false, length = 5)
+    @NotBlank
     private String code;
-
-    private String name;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getCode() {
         return code;
@@ -24,11 +21,4 @@ public class DocType {
         this.code = code;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

@@ -1,23 +1,26 @@
 package ru.bellintegrator.practice.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-public class Document {
-    private Integer id;
+@Entity
+@Table(name = "organization")
+public class Document extends AbstractBaseEntity {
 
+    @ManyToOne
+    @JoinColumn(name = "doc_type_id", nullable = false)
+    @NotNull
     private DocType docType;
 
+    @Column(name = "doc_number", nullable = false, length = 11)
+    @NotBlank
     private String number;
 
+    @Column(name = "doc_date", nullable = false, length = 11)
+    @NotBlank
     private Date date;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public DocType getDocType() {
         return docType;

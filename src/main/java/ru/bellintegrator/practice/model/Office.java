@@ -1,34 +1,28 @@
 package ru.bellintegrator.practice.model;
 
-public class Office {
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-    private Integer id;
+@Entity
+@Table(name = "office")
+public class Office extends AbstractNamedEntity {
 
-    private String name;
-
+    @Column(name = "address", nullable = false)
+    @NotBlank
+    @Size(min = 10, max = 200)
     private String address;
 
+    @Column(name = "phone", nullable = false, length = 11)
+    @NotBlank
     private String phone;
 
+    @Column(name = "is_active", columnDefinition = "false")
     private Boolean isActive;
 
+    @ManyToOne
+    @JoinColumn(name = "org_id")
     private Organization organization;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getAddress() {
         return address;
